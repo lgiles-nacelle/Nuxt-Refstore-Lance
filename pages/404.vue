@@ -17,7 +17,7 @@ export default {
     content: {
       fields: {
         heading: '404',
-        text: 'Uh oh!  The page you are looking for does not exist.',
+        text: 'Uh oh!  The page you are looking for does not exist.  We are still working on it.',
         linkText: 'Back to Homepage',
         linkUrl: '/'
       }
