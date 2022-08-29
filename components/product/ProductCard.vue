@@ -136,6 +136,8 @@ export default {
     }
   },
   created() {
+    console.log('this.products', { ...this.product });
+    // this.selectedVariant = {};
     this.selectedVariant = { ...this.product.variants[0] };
     this.selectedOptions = [
       ...(this.selectedVariant?.content?.selectedOptions ?? [])

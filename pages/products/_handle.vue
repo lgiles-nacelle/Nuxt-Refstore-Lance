@@ -23,6 +23,7 @@ export default {
     ProductDetails,
     SiteSection
   },
+
   async asyncData({ app, params }) {
     console.log('query', {
       query: PRODUCT_PAGE_QUERY,
@@ -39,6 +40,7 @@ export default {
         pageHandle: `page-${params.handle}`
       }
     });
+
     const { page } = await resolvePageData({
       client: app.$nacelle,
       page: pages[0]
