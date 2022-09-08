@@ -25,13 +25,13 @@ export default {
   },
 
   async asyncData({ app, params }) {
-    console.log('query', {
-      query: PRODUCT_PAGE_QUERY,
-      variables: {
-        handle: params.handle,
-        pageHandle: `page-${params.handle}`
-      }
-    });
+    // console.log('query', {
+    //   query: PRODUCT_PAGE_QUERY,
+    //   variables: {
+    //     handle: params.handle,
+    //     pageHandle: `page-${params.handle}`
+    //   }
+    // });
 
     const { products, pages } = await app.$nacelle.query({
       query: PRODUCT_PAGE_QUERY,

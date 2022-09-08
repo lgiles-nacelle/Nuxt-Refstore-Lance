@@ -79,8 +79,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-
-// import { formatPrice } from '~/utils/formatPrice';
+import { formatPrice } from '~/utils/formatPrice';
 import { getCartVariant } from '~/utils/getCartVariant';
 
 export default {
@@ -109,7 +108,7 @@ export default {
         .map((item) => ({
           ...item,
           image: item.content.featuredMedia,
-          price: '$160.00' // formatPrice({ price: item.variants[0].price })
+          price: formatPrice({ price: item.variants[0].price })
         }))
         .slice(0, 3);
     },

@@ -33,14 +33,6 @@ export default {
   },
   computed: {
     ...mapGetters('site', ['siteComponents'])
-  },
-
-  // For Lance
-  created() {
-    console.log(
-      'this.$store.state.siteComponents',
-      this.$store.state.siteComponents
-    );
   }
 };
 </script>
