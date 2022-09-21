@@ -7,12 +7,13 @@
       :content="section"
     />
     <product-review
+      :product="product"
       :name="product.content.title"
       :url="url"
-      :product-i-d="productID"
+      :productid="product.content.handle"
       :currency="currency"
       :price="price"
-      :image-u-r-l="imageURL"
+      :imageurl="imageURL"
     />
   </div>
 </template>

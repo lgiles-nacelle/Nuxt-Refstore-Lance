@@ -2,12 +2,12 @@
   <div v-if="name" class="bg-white">
     <div
       class="yotpo yotpo-main-widget"
-      :data-product-id="productID"
+      :data-product-id="productid"
       :data-price="price"
       :data-currency="currency"
       :data-name="name"
       :data-url="url"
-      :data-image-url="imageURL"
+      :data-image-url="imageurl"
     ></div>
 
     <!-- Start Rating
@@ -20,6 +20,10 @@ export default {
   name: 'ProductReview',
 
   props: {
+    product: {
+      type: Object,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -33,7 +37,7 @@ export default {
       type: String,
       required: true
     },
-    imageURL: {
+    imageurl: {
       type: String,
       required: true
     },
@@ -41,7 +45,7 @@ export default {
       type: String,
       required: true
     },
-    productID: {
+    productid: {
       type: String,
       required: true
     }
@@ -49,17 +53,46 @@ export default {
   mounted() {
     // const pathArray = window.location.pathname.split('/');
     // update Yotpo dynamically
-    console.log('refreshing yotpo');
+    const that = this;
+    if (window.yotpo) {
+      setTimeout(() => {
+        window.yotpo.initialized = false;
+        window.yotpo.clean();
 
-    window.yotpo.initialized = false;
-    window.yotpo.clean();
+        // there is a widgets array that the widgets are pulling data from; we need to update this
+        for (let i = 0, len = window.yotpo.widgets.length; i < len; i++) {
+          console.log('refreshing yotpo', window.yotpo.widgets[i].settings.pid);
+          window.yotpo.widgets[i].settings.pid = that.productid;
+          window.yotpo.widgets[i].settings.main_widget_pid = that.productid;
+          console.log('new value', window.yotpo.widgets[i].settings.pid);
+        }
 
-    // there is a widgets array that the widgets are pulling data from; we need to update this
-    for (let i = 0, len = window.yotpo.widgets.length; i < len; i++) {
-      window.yotpo.widgets[i].settings.pid = this.productID;
-      window.yotpo.widgets[i].settings.main_widget_pid = this.productID;
+        window.yotpo.initWidgets();
+      }, 500);
+    } else {
+      console.log('initializing and refreshing yotpo');
+      const recaptchaScript = document.createElement('script');
+      recaptchaScript.setAttribute(
+        'src',
+        '//staticw2.yotpo.com/aYi6vxBOV00VyVRIlsqsQa0nA2jAi07rWQILkcLO/widget.js'
+      );
+      document.head.appendChild(recaptchaScript);
+
+      // setTimeout(() => {
+      //   // window.yotpo.initialized = false;
+      //   window.yotpo.clean();
+
+      //   // there is a widgets array that the widgets are pulling data from; we need to update this
+      //   for (let i = 0, len = window.yotpo.widgets.length; i < len; i++) {
+      //     console.log('refreshing yotpo', window.yotpo.widgets[i].settings.pid);
+      //     window.yotpo.widgets[i].settings.pid = that.productid;
+      //     window.yotpo.widgets[i].settings.main_widget_pid = that.productid;
+      //     console.log('new value', window.yotpo.widgets[i].settings.pid);
+      //   }
+
+      //   window.yotpo.initWidgets();
+      // }, 100);
     }
-    setTimeout(() => window.yotpo.initWidgets(), 500);
   }
 };
 </script>

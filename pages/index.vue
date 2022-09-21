@@ -47,6 +47,12 @@ export default {
       '//staticw2.yotpo.com/aYi6vxBOV00VyVRIlsqsQa0nA2jAi07rWQILkcLO/widget.js'
     );
     document.head.appendChild(recaptchaScript);
+
+    setTimeout(() => {
+      if (window.yotpo) {
+        window.yotpo.initWidgets();
+      }
+    }, 500);
   }
 };
 </script>
