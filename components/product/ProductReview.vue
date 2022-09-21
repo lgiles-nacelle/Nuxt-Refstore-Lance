@@ -1,5 +1,6 @@
 <template>
   <div v-if="product" class="bg-white">
+    Review Widget
     <div
       class="yotpo yotpo-main-widget"
       :data-product-id="productID"
@@ -9,6 +10,9 @@
       :data-url="url"
       :data-image-url="imageURL"
     ></div>
+
+    <!-- Start Rating
+    <div class="yotpo bottomLine" :data-yotpo-product-id="productID"></div> -->
   </div>
 </template>
 
@@ -30,10 +34,22 @@ export default {
       return formatPrice({ price: this.product?.variants[0].price });
     },
     url() {
-      return this.product?.handle;
+      console.log(
+        'product url',
+        'https://nostalgia-by-lance.vercel.app/products/' +
+          this.product?.content.handle
+      );
+      return (
+        'https://nostalgia-by-lance.vercel.app/products/' +
+        this.product?.content.handle
+      );
     },
     imageURL() {
-      return this.product.variants[0].content.featuredMedia.src;
+      console.log(
+        'this.product.content.media[0].src;',
+        this.product.content.media[0].src
+      );
+      return this.product.content.media[0].src;
     },
     currency() {
       return 'USD';
@@ -50,14 +66,5 @@ export default {
     );
     document.head.appendChild(recaptchaScript);
   }
-  // metaInfo: {
-  //   script: [
-  //     {
-  //       src: '(function e(){console.log("Hello Review");var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/aYi6vxBOV00VyVRIlsqsQa0nA2jAi07rWQILkcLO/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();',
-  //       async: true,
-  //       defer: true
-  //     }
-  //   ]
-  // }
 };
 </script>
