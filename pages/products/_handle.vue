@@ -10,10 +10,10 @@
       :product="product"
       :name="product.content.title"
       :url="url"
-      :productid="product.content.handle"
+      :productid="productid"
       :currency="currency"
       :price="price"
-      :imageurl="imageURL"
+      :imageurl="imageurl"
     />
   </div>
 </template>
@@ -64,9 +64,9 @@ export default {
       url:
         'https://nostalgia-by-lance.vercel.app/products/' +
         products[0].content.handle,
-      imageURL: products[0].content.media[0].src,
+      imageurl: products[0].content.media[0].src,
       currency: 'USD',
-      productID: products[0].nacelleEntryId.replace('=', '')
+      productid: products[0].nacelleEntryId.replace('=', '')
     };
   },
   head() {

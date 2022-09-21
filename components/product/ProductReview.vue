@@ -55,22 +55,22 @@ export default {
     // update Yotpo dynamically
     const that = this;
     if (window.yotpo) {
+      window.yotpo.initialized = false;
+      window.yotpo.clean();
+
+      // there is a widgets array that the widgets are pulling data from; we need to update this
+      for (let i = 0, len = window.yotpo.widgets.length; i < len; i++) {
+        // console.log('refreshing yotpo', window.yotpo.widgets[i].settings.pid);
+        window.yotpo.widgets[i].settings.pid = that.productid;
+        window.yotpo.widgets[i].settings.main_widget_pid = that.productid;
+        // console.log('new value', window.yotpo.widgets[i].settings.pid);
+      }
+
       setTimeout(() => {
-        window.yotpo.initialized = false;
-        window.yotpo.clean();
-
-        // there is a widgets array that the widgets are pulling data from; we need to update this
-        for (let i = 0, len = window.yotpo.widgets.length; i < len; i++) {
-          console.log('refreshing yotpo', window.yotpo.widgets[i].settings.pid);
-          window.yotpo.widgets[i].settings.pid = that.productid;
-          window.yotpo.widgets[i].settings.main_widget_pid = that.productid;
-          console.log('new value', window.yotpo.widgets[i].settings.pid);
-        }
-
         window.yotpo.initWidgets();
       }, 500);
     } else {
-      console.log('initializing and refreshing yotpo');
+      // console.log('initializing and refreshing yotpo');
       const recaptchaScript = document.createElement('script');
       recaptchaScript.setAttribute(
         'src',
