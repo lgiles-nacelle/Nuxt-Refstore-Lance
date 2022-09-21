@@ -7,7 +7,7 @@
       :data-price="price"
       :data-currency="currency"
       :data-name="product.content.title"
-      :data-url="url"
+      data-url="https://nostalgia-by-lance.vercel.app/products/rosana-top"
       :data-image-url="imageURL"
     ></div>
 
