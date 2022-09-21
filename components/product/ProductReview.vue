@@ -7,7 +7,7 @@
       :data-price="price"
       :data-currency="currency"
       :data-name="product.content.title"
-      data-url="https://nostalgia-by-lance.vercel.app/products/rosana-top"
+      :data-url="url"
       :data-image-url="imageURL"
     ></div>
 
@@ -28,36 +28,18 @@ export default {
       required: true
     }
   },
-  computed: {
-    price() {
-      console.log('product in review', this.product);
-      return formatPrice({ price: this.product?.variants[0].price });
-    },
-    url() {
-      console.log(
-        'product url',
+  data() {
+    return {
+      price: formatPrice({ price: this.product?.variants[0].price }),
+      url:
         'https://nostalgia-by-lance.vercel.app/products/' +
-          this.product?.content.handle
-      );
-      return (
-        'https://nostalgia-by-lance.vercel.app/products/' +
-        this.product?.content.handle
-      );
-    },
-    imageURL() {
-      console.log(
-        'this.product.content.media[0].src;',
-        this.product.content.media[0].src
-      );
-      return this.product.content.media[0].src;
-    },
-    currency() {
-      return 'USD';
-    },
-    productID() {
-      return this.product.nacelleEntryId.replace('=', '');
-    }
+        this.product?.content.handle,
+      imageURL: this.product.content.media[0].src,
+      currency: 'USD',
+      productID: this.product.nacelleEntryId.replace('=', '')
+    };
   },
+
   mounted() {
     const recaptchaScript = document.createElement('script');
     recaptchaScript.setAttribute(
