@@ -77,21 +77,6 @@ export default {
         '//staticw2.yotpo.com/aYi6vxBOV00VyVRIlsqsQa0nA2jAi07rWQILkcLO/widget.js'
       );
       document.head.appendChild(recaptchaScript);
-
-      // setTimeout(() => {
-      //   // window.yotpo.initialized = false;
-      //   window.yotpo.clean();
-
-      //   // there is a widgets array that the widgets are pulling data from; we need to update this
-      //   for (let i = 0, len = window.yotpo.widgets.length; i < len; i++) {
-      //     console.log('refreshing yotpo', window.yotpo.widgets[i].settings.pid);
-      //     window.yotpo.widgets[i].settings.pid = that.productid;
-      //     window.yotpo.widgets[i].settings.main_widget_pid = that.productid;
-      //     console.log('new value', window.yotpo.widgets[i].settings.pid);
-      //   }
-
-      //   window.yotpo.initWidgets();
-      // }, 100);
     }
   }
 };
