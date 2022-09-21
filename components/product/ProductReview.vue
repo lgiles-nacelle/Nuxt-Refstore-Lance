@@ -1,6 +1,5 @@
 <template>
   <div v-if="product" class="bg-white">
-    Review Widget
     <div
       class="yotpo yotpo-main-widget"
       :data-product-id="productID"
