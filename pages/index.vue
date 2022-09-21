@@ -21,8 +21,11 @@ export default {
     const { pages } = await app.$nacelle.query({
       query: CONTENT_PAGE_QUERY,
       variables: { handle: 'page-homepage' }
-    })
-    const { page } = await resolvePageData({ client: app.$nacelle, page: pages[0] })
+    });
+    const { page } = await resolvePageData({
+      client: app.$nacelle,
+      page: pages[0]
+    });
     return {
       page
     };
@@ -34,6 +37,16 @@ export default {
     sections() {
       return this.page?.fields.sections;
     }
+  },
+  mounted() {
+    // const pathArray = window.location.pathname.split('/');
+    console.log('initializing yotpo');
+    const recaptchaScript = document.createElement('script');
+    recaptchaScript.setAttribute(
+      'src',
+      '//staticw2.yotpo.com/aYi6vxBOV00VyVRIlsqsQa0nA2jAi07rWQILkcLO/widget.js'
+    );
+    document.head.appendChild(recaptchaScript);
   }
 };
 </script>

@@ -1,11 +1,11 @@
 <template>
-  <div v-if="product" class="bg-white">
+  <div v-if="name" class="bg-white">
     <div
       class="yotpo yotpo-main-widget"
       :data-product-id="productID"
       :data-price="price"
       :data-currency="currency"
-      :data-name="product.content.title"
+      :data-name="name"
       :data-url="url"
       :data-image-url="imageURL"
     ></div>
@@ -20,19 +20,46 @@ export default {
   name: 'ProductReview',
 
   props: {
-    product: {
-      type: Object,
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    url: {
+      type: String,
+      required: true
+    },
+    imageURL: {
+      type: String,
+      required: true
+    },
+    currency: {
+      type: String,
+      required: true
+    },
+    productID: {
+      type: String,
       required: true
     }
   },
-
   mounted() {
-    const recaptchaScript = document.createElement('script');
-    recaptchaScript.setAttribute(
-      'src',
-      '//staticw2.yotpo.com/aYi6vxBOV00VyVRIlsqsQa0nA2jAi07rWQILkcLO/widget.js'
-    );
-    document.head.appendChild(recaptchaScript);
+    // const pathArray = window.location.pathname.split('/');
+    // update Yotpo dynamically
+    console.log('refreshing yotpo');
+
+    window.yotpo.initialized = false;
+    window.yotpo.clean();
+
+    // there is a widgets array that the widgets are pulling data from; we need to update this
+    for (let i = 0, len = window.yotpo.widgets.length; i < len; i++) {
+      window.yotpo.widgets[i].settings.pid = this.productID;
+      window.yotpo.widgets[i].settings.main_widget_pid = this.productID;
+    }
+    setTimeout(() => window.yotpo.initWidgets(), 500);
   }
 };
 </script>

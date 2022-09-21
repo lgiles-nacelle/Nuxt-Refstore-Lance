@@ -7,10 +7,11 @@
       :content="section"
     />
     <product-review
-      :product="product"
+      :name="product.content.title"
       :url="url"
       :product-i-d="productID"
       :currency="currency"
+      :price="price"
       :image-u-r-l="imageURL"
     />
   </div>
@@ -70,6 +71,7 @@ export default {
   head() {
     return buildMeta({ product: this.product });
   },
+
   computed: {
     sections() {
       return this.page?.fields.sections;
