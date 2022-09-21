@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import { formatPrice } from '~/utils/formatPrice';
-
 export default {
   name: 'ProductReview',
 
@@ -27,17 +25,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  data() {
-    return {
-      price: formatPrice({ price: this.product?.variants[0].price }),
-      url:
-        'https://nostalgia-by-lance.vercel.app/products/' +
-        this.product?.content.handle,
-      imageURL: this.product.content.media[0].src,
-      currency: 'USD',
-      productID: this.product.nacelleEntryId.replace('=', '')
-    };
   },
 
   mounted() {
