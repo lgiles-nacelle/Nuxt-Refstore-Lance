@@ -6,6 +6,7 @@
       :key="section._key"
       :content="section"
     />
+    <product-review :product="product" />
   </div>
 </template>
 
@@ -15,13 +16,15 @@ import { buildMeta } from '~/utils/buildMeta';
 import { resolvePageData } from '~/utils/resolvers';
 
 import ProductDetails from '~/components/product/ProductDetails.vue';
+import ProductReview from '~/components/product/ProductReview.vue';
 import SiteSection from '~/components/section/Section.vue';
 
 export default {
   name: 'ProductPage',
   components: {
     ProductDetails,
-    SiteSection
+    SiteSection,
+    ProductReview
   },
 
   async asyncData({ app, params }) {
