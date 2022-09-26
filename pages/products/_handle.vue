@@ -61,7 +61,10 @@ export default {
       product: products[0],
       page,
       price: products[0].variants[0].price,
-      url: 'https://nostalgia-by-lance.vercel.app',
+      url:
+        'https://nostalgia-by-lance.vercel.app/' +
+        'products/' +
+        products[0].content.handle,
       imageurl: products[0].content.media[0].src,
       currency: 'USD',
       productid: products[0].nacelleEntryId.replace('=', '')

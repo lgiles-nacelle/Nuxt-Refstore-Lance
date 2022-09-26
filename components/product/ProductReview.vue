@@ -53,6 +53,7 @@ export default {
   mounted() {
     // const pathArray = window.location.pathname.split('/');
     // update Yotpo dynamically
+
     const that = this;
     if (window.yotpo) {
       window.yotpo.initialized = false;
