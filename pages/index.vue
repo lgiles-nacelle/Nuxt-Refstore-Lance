@@ -20,7 +20,7 @@ export default {
   async asyncData({ app }) {
     const { pages } = await app.$nacelle.query({
       query: CONTENT_PAGE_QUERY,
-      variables: { handle: 'page-homepage' }
+      variables: { handle: 'page-fallpage' }
     });
     const { page } = await resolvePageData({
       client: app.$nacelle,
