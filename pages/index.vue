@@ -19,7 +19,6 @@ export default {
   components: { SiteSection },
   async asyncData({ app }) {
     const { pages } = await app.$nacelle.query({
-      bla
       query: CONTENT_PAGE_QUERY,
       variables: { handle: 'page-digestion-1' }
     });
