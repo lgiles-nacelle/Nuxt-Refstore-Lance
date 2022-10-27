@@ -34,7 +34,6 @@ export default {
     return buildMeta({ route: this.$route });
   },
   computed: {
-    asdf
     sections() {
       return this.page?.fields.sections;
     }
