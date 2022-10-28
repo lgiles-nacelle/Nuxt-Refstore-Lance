@@ -1,23 +1,9 @@
-export default {
-  async fetch(request, env) {
-    return await handleRequest(request, env);
-  }
-};
-
-async function handleRequest(request, env) {
-  const cloudflareMsg = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
-  const runCloudFlareWorker = await fetch(
-    'https://lance-nostalgia.lance-giles4562.workers.dev',
-    cloudflareMsg
+export async function onRequestGet(context) {
+  // Contents of context object
+  const res = await fetch(
+    'https://lance-nostalgia.lance-giles4562.workers.dev'
   );
-
-  console.log('allBuilds', runCloudFlareWorker);
-
-  return new Response('New build detected', { status: 200 });
+  const data = await res.json();
+  const info = JSON.stringify(data, null, 2);
+  return new Response(info);
 }
