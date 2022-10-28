@@ -1,0 +1,1 @@
+Creating a text txt file in order to get this new functions folder into my project for cloudflare test
